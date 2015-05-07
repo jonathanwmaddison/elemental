@@ -1,0 +1,46 @@
+{
+  "name": "elemental",
+  "version": "0.0.4",
+  "description": "React UI Framework",
+  "main": "lib/Elemental.js",
+  "author": "Jed Watson",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elementalui/elemental.git"
+  },
+  "scripts": {
+    "build-lib": "gulp build:lib",
+    "publish-site": "gulp publish:examples",
+    "release": "gulp release",
+    "site": "gulp dev:server",
+    "start": "gulp dev",
+    "watch": "gulp watch:lib"
+  },
+  "dependencies": {
+    "blacklist": "^1.1.2",
+    "classnames": "^2.1.1",
+    "lodash": "^3.8.0",
+    "moment": "^2.10.2",
+    "react-date-select": "0.0.5"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "react": "^0.13.2",
+    "react-component-gulp-tasks": "^0.7.0",
+    "react-router": "^0.13.3"
+  },
+  "peerDependencies": {
+    "react": "^0.13.0"
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "ui",
+    "framework",
+    "controls",
+    "element",
+    "css",
+    "less"
+  ]
+}

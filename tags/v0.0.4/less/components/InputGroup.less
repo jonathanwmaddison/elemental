@@ -1,0 +1,52 @@
+// 
+// Input Group
+// ==============================
+
+
+// wrapper
+
+.InputGroup {
+	display: table;
+	margin-bottom: @spacing-md;
+
+	.FormInput {
+		display: table-cell;
+		position: relative;
+		width: 100%;
+
+		&:focus {
+			z-index: 1;
+		}
+		&:first-child {
+			.border-right-radius(0);
+		}
+		&:last-child {
+			.border-left-radius(0);
+		}
+	}
+}
+
+// element
+
+.InputGroup_addon {
+	display: table-cell;
+	position: relative;
+	vertical-align: middle;
+	width: 1%;
+
+	> * {
+		position: relative;
+
+		&:focus {
+			z-index: 1;
+		}
+	}
+	&:first-child > * {
+		.border-right-radius(0);
+		margin-right: -1px;
+	}
+	&:last-child > * {
+		.border-left-radius(0);
+		margin-left: -1px;
+	}
+}

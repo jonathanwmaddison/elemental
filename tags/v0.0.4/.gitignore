@@ -1,0 +1,10 @@
+# Logs
+logs
+*.log
+
+# Build
+dist
+.publish
+
+# Dependencies
+node_modules
