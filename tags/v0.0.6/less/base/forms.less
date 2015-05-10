@@ -1,0 +1,274 @@
+//
+// Forms
+// ==============================
+
+
+
+
+// Labels
+// ------------------------------
+
+.form-label {
+	.transition( color @form-animation-duration );
+	color: @form-label-color;
+	display: inline-block;
+	font-size: @font-size-sm;
+	font-weight: @font-weight-bold;
+	margin-bottom: @spacing-sm;
+}
+
+
+
+
+// Groups
+// ------------------------------
+
+.form-field {
+	margin-bottom: @spacing-md;
+}
+
+// Make the wrapper behave like a table
+
+.form-row {
+	&:extend(.clearfix all);
+}
+@media (min-width: @screen-sm) {
+	.form-row {
+		margin: 0 -(@input-padding-horizontal / 2) @spacing-md;
+		min-width: 100%;
+
+		> .form-field {
+			float: left;
+			padding: 0 (@input-padding-horizontal / 2);
+
+			// sizes
+			&.one-half,
+			&.two-quarters,
+			&.three-sixths   { width: 50%; }
+
+			&.one-quarter    { width: 25%; }
+			&.three-quarters { width: 75%; }
+
+			&.one-third,
+			&.two-sixths     { width: 33.333%; }
+			&.two-thirds,
+			&.four-sixths    { width: 66.666%; }
+
+			&.one-fifth      { width: 20%; }
+			&.two-fifths     { width: 40%; }
+			&.three-fifths   { width: 60%; }
+			&.four-fifths    { width: 80%; }
+
+			&.one-sixth      { width: 16.666%; }
+			&.five-sixths    { width: 83.333%; }
+		}
+	}
+}
+
+
+
+
+// Help
+// ------------------------------
+
+.form-help {
+	color: @form-help-color;
+	font-size: @font-size-sm;
+	margin-bottom: @spacing-sm;
+	margin-top: @spacing-sm;
+}
+
+
+
+
+// Validation
+// ------------------------------
+
+
+// message
+
+.form-validation {
+	.animation( formValidationMessage @form-animation-duration ease );
+	font-size: @font-size-xs;
+	margin-top: .5em;
+	overflow: hidden;
+
+	.is-invalid & {
+		color: @app-danger;
+	}
+	.is-valid & {
+		color: @app-success;
+	}
+}
+
+@-webkit-keyframes formValidationMessage {
+	from { max-height: 0; opacity: 0; }
+	to   { max-height: @font-size-base; opacity: 1; }
+}
+@keyframes formValidationMessage {
+	from { max-height: 0; opacity: 0; }
+	to   { max-height: @font-size-base; opacity: 1; }
+}
+
+
+// effects on other elements
+
+.form-field.is-invalid {
+	.form-label {
+		color: @app-danger;
+	}
+	.FormInput {
+		border-color: @app-danger;
+
+		&:focus {
+			border-color: @app-danger;
+			box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px fade(@app-danger, 10%);
+		}
+	}
+}
+.form-field.is-valid {
+	.form-label {
+		color: @app-success;
+	}
+	.FormInput {
+		border-color: @app-success;
+
+		&:focus {
+			border-color: @app-success;
+			box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px fade(@app-success, 10%);
+		}
+	}
+}
+
+
+
+
+// ==============================
+// Field Types
+// ==============================
+
+
+
+
+
+// Checkbox & Radio
+// ------------------------------
+
+.checkbox,
+.radio {
+	margin-bottom: .5em;
+}
+
+.inline-controls {
+	.checkbox,
+	.radio {
+		display: inline-block;
+		margin-right: 1em;
+	}
+}
+
+
+
+
+// ==============================
+// Form Types
+// ==============================
+
+
+
+
+
+// Horizontal Form
+// ------------------------------
+
+.horizontal-form {
+
+	// add spacing above the element when it's stacked
+	// no need to remove at higher break-points because it becomes a table cell (which aren't effected by margin)
+	.form-label {
+		&:not(:first-child) {
+			margin-top: @spacing-md;
+		}
+	}
+}
+
+@media (min-width: @screen-sm) {
+	.horizontal-form {
+		// Make the wrapper behave like a table
+		.form-field {
+			display: table;
+			table-layout: fixed;
+			min-width: 100%;
+		}
+		
+		// Fix the label width to allow the field to stretch
+		.form-label {
+			display: table-cell;
+			line-height: @component-height;
+			margin-bottom: 0;
+			vertical-align: middle;
+			width: @form-label-width;
+
+			&:not(:first-child) {
+				padding-left: @grid-gutter-width;
+			}
+		}
+
+		// Account for missing labels
+		// the wacky syntax on width is so LESS doesn't try to run the calculation itself,
+		// where it will normalize the values assuming both are pixels. this way it's
+		// left to the browser
+		.FormInput:first-child {
+			margin-left: @form-label-width;
+			width: calc(~"100%" - @form-label-width);
+
+			& + .form-validation {
+				margin-left: @form-label-width;
+			}
+		}
+	}
+	.horizontal-form-submit-button {
+		margin-left: @form-label-width;
+	}
+}
+
+
+
+
+
+// Inline Form
+// ------------------------------
+
+@media (min-width: @screen-sm) {
+	.inline-form {
+		.checkbox,
+		.radio,
+		.form-field {
+			display: inline-block;
+			padding-left: .25em;
+			padding-right: .25em;
+			vertical-align: top;
+
+			&:first-child { padding-left: 0; }
+			&:last-child { padding-right: 0; }
+		}
+		.checkbox,
+		.radio {
+			line-height: 2.4em;
+			margin: 0 @input-padding-horizontal;
+		}
+		.form-label {
+			.sr-only();
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
