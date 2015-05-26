@@ -104,6 +104,11 @@ var Forms = React.createClass({
 			);
 		});
 
+		var options = [1, 2, 3, 4, 5].map(function(item) {
+			return <option key={'option-' + item} value={item}>Option {item}</option>;
+		});
+
+
 		// Icon Loops
 
 		var iconContextVariantsColor = COLOR_VARIANTS.map(function(color) {
@@ -260,9 +265,9 @@ var Forms = React.createClass({
 						<FormInput placeholder="Textarea" name="supported-controls-textarea" multiline />
 					</FormField>
 					<FormField label="Select" htmlFor="supported-controls-select">
-						<FormSelect options={controlOptions} firstOption="Select" onChange={updateSelect} />
+						<FormSelect options={options} firstOption="Select" />
 					</FormField>
-					<FormSelect label="Disabled Select" options={controlOptions} onChange={updateSelect} htmlFor="supported-conrols-select-disabled" firstOption="Disabled Select" disabled />
+					<FormSelect label="Disabled Select" options={options} htmlFor="supported-conrols-select-disabled" firstOption="Disabled Select" disabled />
 					<FormField label="Checkboxes">
 						{checkboxes}
 					</FormField>
@@ -330,7 +335,7 @@ var Forms = React.createClass({
 							<FormInput width="one-third" placeholder="Post Code" name="city" />
 						</FormField>
 						<FormField width="two-thirds">
-							<FormSelect options={countryOptions} firstOption="Country" onChange={updateSelect} />
+							<FormSelect options={countryOptions} firstOption="Country" />
 						</FormField>
 					</FormRow>
 				</form>
