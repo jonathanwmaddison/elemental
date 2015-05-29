@@ -1,0 +1,33 @@
+// 
+// Tags
+// ==============================
+
+.tag-variant(@color, @background) {
+	background-color: @background;
+	color: @color;
+
+	// states
+	&:hover,
+	&:focus {
+		background-color: darken(@background, 4%);
+		outline: none;
+	}
+	&:active {
+		background-color: darken(@background, 8%);
+	}
+}
+
+.tag-inverted-variant(@color, @background) {
+	background-color: @background;
+	color: @color;
+
+	// states
+	&:hover,
+	&:focus {
+		background-color: lighten(@background, 5%);
+		outline: none;
+	}
+	&:active {
+		background-color: darken(@background, 5%);
+	}
+}
