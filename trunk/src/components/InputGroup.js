@@ -8,6 +8,11 @@ module.exports = React.createClass({
 		className: React.PropTypes.string,
 		contiguous: React.PropTypes.bool
 	},
+	getDefaultProps() {
+		return {
+			contiguous: true
+		};
+	},
 	render() {
 		// props
 		var props = blacklist(this.props, 'className');
@@ -15,7 +20,7 @@ module.exports = React.createClass({
 
 		// classes
 		var className = classNames('InputGroup', {
-			'InputGroup--contiguous': this.props.contiguous
+			'is-contiguous': this.props.contiguous
 		}, this.props.className);
 
 		return (

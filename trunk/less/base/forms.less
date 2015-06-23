@@ -33,16 +33,16 @@
 // Form Rows
 // ------------------------------
 
-.FormRow {
+.form-row {
 	&:extend(.u-clearfix all);
 }
 @media (min-width: @screen-sm) {
-	.FormRow {
+	.form-row {
 		margin: 0 -(@input-padding-horizontal / 2) @spacing-md;
 		min-width: 100%;
 
 		> .form-field {
-			display: block; // override .horizontal-form styles inside .FormRow
+			display: block; // override .horizontal-form styles inside .form-row
 			float: left;
 			padding: 0 (@input-padding-horizontal / 2);
 
@@ -70,7 +70,7 @@
 	}
 
 	// inside a form field
-	.form-field > .FormRow {
+	.form-field > .form-row {
 		margin-bottom: 0;
 	}
 }
@@ -151,28 +151,17 @@
 // Checkbox & Radio
 // ------------------------------
 
-.Checkbox,
-.Radio {
-	display: block;
+.checkbox,
+.radio {
 	margin-bottom: .5em;
 }
 
-.Checkbox__label,
-.Radio__label {
-	margin-left: .5em;
-}
-
-.inline-controls > .Checkbox,
-.inline-controls > .Radio,
-.Checkbox--inline,
-.Radio--inline {
-	display: inline-block;
-	margin-right: 1em;
-}
-
-.Checkbox--disabled,
-.Radio--disabled {
-	color: @control-disabled-color;
+.inline-controls {
+	.checkbox,
+	.radio {
+		display: inline-block;
+		margin-right: 1em;
+	}
 }
 
 
@@ -227,7 +216,7 @@
 		}
 
 		// reset styles when using rows inside .horizontal-form
-		.FormRow > .form-field {
+		.form-row > .form-field {
 			display: block;
 			margin-bottom: 0;
 			min-width: 0;
@@ -253,8 +242,8 @@
 
 @media (min-width: @screen-sm) {
 	.inline-form {
-		.Checkbox,
-		.Radio,
+		.checkbox,
+		.radio,
 		.form-field {
 			display: inline-block;
 			padding-left: .25em;
@@ -264,8 +253,8 @@
 			&:first-child { padding-left: 0; }
 			&:last-child { padding-right: 0; }
 		}
-		.Checkbox,
-		.Radio {
+		.checkbox,
+		.radio {
 			line-height: 2.4em;
 			margin: 0 @input-padding-horizontal;
 		}
