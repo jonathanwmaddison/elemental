@@ -1,0 +1,286 @@
+//
+// Forms
+// ==============================
+
+
+
+
+// Labels
+// ------------------------------
+
+.form-label {
+	.transition( color @form-animation-duration );
+	color: @form-label-color;
+	display: inline-block;
+	font-size: @font-size-sm;
+	font-weight: @font-weight-bold;
+	margin-bottom: @spacing-sm;
+}
+
+
+
+
+// Groups
+// ------------------------------
+
+.form-field {
+	margin-bottom: @spacing-md;
+}
+
+
+
+
+// Form Rows
+// ------------------------------
+
+.FormRow {
+	&:extend(.u-clearfix all);
+}
+@media (min-width: @screen-sm) {
+	.FormRow {
+		margin: 0 -(@input-padding-horizontal / 2) @spacing-md;
+		min-width: 100%;
+
+		> .form-field {
+			display: block; // override .horizontal-form styles inside .FormRow
+			float: left;
+			padding: 0 (@input-padding-horizontal / 2);
+
+			// sizes
+			&.one-half,
+			&.two-quarters,
+			&.three-sixths   { width: 50%; }
+
+			&.one-quarter    { width: 25%; }
+			&.three-quarters { width: 75%; }
+
+			&.one-third,
+			&.two-sixths     { width: 33.333%; }
+			&.two-thirds,
+			&.four-sixths    { width: 66.666%; }
+
+			&.one-fifth      { width: 20%; }
+			&.two-fifths     { width: 40%; }
+			&.three-fifths   { width: 60%; }
+			&.four-fifths    { width: 80%; }
+
+			&.one-sixth      { width: 16.666%; }
+			&.five-sixths    { width: 83.333%; }
+		}
+	}
+
+	// inside a form field
+	.form-field > .FormRow {
+		margin-bottom: 0;
+	}
+}
+
+
+
+
+// Validation
+// ------------------------------
+
+
+// message
+
+.form-validation {
+	.animation( formValidationMessage @form-animation-duration ease );
+	font-size: @font-size-xs;
+	margin-top: .5em;
+	overflow: hidden;
+
+	.is-invalid & {
+		color: @app-danger;
+	}
+	.is-valid & {
+		color: @app-success;
+	}
+}
+
+@-webkit-keyframes formValidationMessage {
+	from { max-height: 0; opacity: 0; }
+	to   { max-height: @font-size-base; opacity: 1; }
+}
+@keyframes formValidationMessage {
+	from { max-height: 0; opacity: 0; }
+	to   { max-height: @font-size-base; opacity: 1; }
+}
+
+
+// effects on other elements
+
+.form-field.is-invalid {
+	.form-label {
+		color: @app-danger;
+	}
+	.FormInput {
+		border-color: @app-danger;
+
+		&:focus {
+			border-color: @app-danger;
+			box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px fade(@app-danger, 10%);
+		}
+	}
+}
+.form-field.is-valid {
+	.form-label {
+		color: @app-success;
+	}
+	.FormInput {
+		border-color: @app-success;
+
+		&:focus {
+			border-color: @app-success;
+			box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px fade(@app-success, 10%);
+		}
+	}
+}
+
+
+
+
+// ==============================
+// Field Types
+// ==============================
+
+
+
+
+
+// Checkbox & Radio
+// ------------------------------
+
+.Checkbox,
+.Radio {
+	display: block;
+	margin-bottom: .5em;
+}
+
+.Checkbox__label,
+.Radio__label {
+	margin-left: .5em;
+}
+
+.inline-controls > .Checkbox,
+.inline-controls > .Radio,
+.Checkbox--inline,
+.Radio--inline {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.Checkbox--disabled,
+.Radio--disabled {
+	color: @control-disabled-color;
+}
+
+
+
+
+// ==============================
+// Form Types
+// ==============================
+
+
+
+
+
+// Horizontal Form
+// ------------------------------
+
+.horizontal-form {
+
+	// add spacing above the element when it's stacked
+	// no need to remove at higher break-points because it becomes a table cell (which aren't effected by margin)
+	.form-label {
+		&:not(:first-child) {
+			margin-top: @spacing-md;
+		}
+	}
+}
+
+@media (min-width: @screen-sm) {
+	.horizontal-form {
+		// Make the wrapper behave like a table
+		.form-field {
+			display: table;
+			table-layout: fixed;
+			width: 100%;
+
+			&.offset-absent-label {
+				padding-left: @form-label-width;
+			}
+		}
+		
+		// Fix the label width to allow the field to stretch
+		.form-label {
+			display: table-cell;
+			line-height: @component-height;
+			margin-bottom: 0;
+			vertical-align: top;
+			width: @form-label-width;
+
+			&:not(:first-child) {
+				padding-left: @grid-gutter-width;
+			}
+		}
+
+		// reset styles when using rows inside .horizontal-form
+		.FormRow > .form-field {
+			display: block;
+			margin-bottom: 0;
+			min-width: 0;
+
+			> .form-label {
+				display: block;
+			}
+
+			.FormInput {
+				margin: 0;
+				width: 100%;
+			}
+		}
+	}
+}
+
+
+
+
+
+// Inline Form
+// ------------------------------
+
+@media (min-width: @screen-sm) {
+	.inline-form {
+		.Checkbox,
+		.Radio,
+		.form-field {
+			display: inline-block;
+			padding-left: .25em;
+			padding-right: .25em;
+			vertical-align: top;
+
+			&:first-child { padding-left: 0; }
+			&:last-child { padding-right: 0; }
+		}
+		.Checkbox,
+		.Radio {
+			line-height: 2.4em;
+			margin: 0 @input-padding-horizontal;
+		}
+		.form-label {
+			.u-hidden-visually();
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
