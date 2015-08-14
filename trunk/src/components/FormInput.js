@@ -7,7 +7,6 @@ module.exports = React.createClass({
 	propTypes: {
 		className: React.PropTypes.string,
 		disabled: React.PropTypes.bool,
-		focusOnMount: React.PropTypes.bool,
 		href: React.PropTypes.string,
 		id: React.PropTypes.string,
 		multiline: React.PropTypes.bool,
@@ -18,25 +17,14 @@ module.exports = React.createClass({
 		type: React.PropTypes.string,
 		value: React.PropTypes.string
 	},
-	
 	getDefaultProps() {
 		return {
 			type: 'text'
 		};
 	},
-	
-	componentDidMount () {
-		if (this.props.focusOnMount) {
-			setTimeout(() => {
-				this.focus();
-			}, 10);
-		}
-	},
-	
 	focus() {
-		React.findDOMNode(this.refs.target).focus();
+		this.refs.element.focus();
 	},
-	
 	render() {
 		// classes
 		var className = classNames(
@@ -52,7 +40,7 @@ module.exports = React.createClass({
 		var props = Object.assign(blacklist(this.props, 'className'), {
 			className: className,
 			id: this.props.id || this.props.name,
-			ref: 'target'
+			ref: 'element'
 		});
 
 		// element
