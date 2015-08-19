@@ -1,5 +1,5 @@
-const React = require('react');
-const Router = require('react-router');
+var React = require('react');
+var Router = require('react-router');
 
 const NavItems = [
 	{ value: 'css',     icon: 'paintcan',      label: 'CSS' },
@@ -11,28 +11,26 @@ const NavItems = [
 	// { value: 'date-picker', icon: 'calendar', label: 'Date' }
 ];
 
-const { Col, Container, Row } = require('elemental');
-
 var Home = React.createClass({
 	displayName: 'VIEW_Home',
 
 	render () {
 		var menuItems = NavItems.map(function(item) {
 			return (
-				<Col xs="1/3" sm="1/6" key={item.label} className="demo-banner-nav__col col-xs-4 col-sm-2">
+				<div key={item.label} className="demo-banner-nav__col col-xs-4 col-sm-2">
 					<Router.Link key={item.value} className="demo-banner-nav__item" onClick={self.toggleMenu} to={item.value}>
 						<span className={'demo-banner-nav__icon octicon octicon-' + item.icon} />
 						<div className="demo-banner-nav__label">
 							<span className="demo-banner-nav__label-inner">{item.label}</span>
 						</div>
 					</Router.Link>
-				</Col>
+				</div>
 			);
 		});
 		return (
 			<div>
 				<header className="demo-banner demo-banner--primary">
-					<Container maxWidth={768} className="demo-container">
+					<div className="demo-container container">
 						<span className="demo-banner-illustration" />
 						<h1 className="demo-banner__heading demo-banner__heading-1">Elemental UI</h1>
 						<h2 className="demo-banner__heading demo-banner__heading-2">A UI Toolkit for React.js Websites and Apps</h2>
@@ -40,48 +38,49 @@ var Home = React.createClass({
 							<a className="Button Button--demo-primary" href="https://twitter.com/elementalui" target="_blank">Follow @ElementalUI on Twitter</a>
 							<a className="Button Button--demo-link" href="https://github.com/elementalui/elemental" target="_blank">View the GitHub Project</a>
 						</div>
-					</Container>
+					</div>
 				</header>
 				<div className="demo-banner demo-banner--secondary">
-					<Container maxWidth={768} className="demo-container">
+					<div className="demo-container container">
 						<h2 className="demo-banner__heading demo-banner__heading-2">Project Status</h2>
 						<ul className="demo-banner-list">
-							<li>Currently under development, initially for use in <a href="http://www.keystonejs.com">KeystoneJS</a></li>
-							<li>We are experimenting with Component APIs</li>
-							<li>Potentially, we'll transition from stylesheets to more inline styles, and would love feedback</li>
+							<li>Currently under heavy development, initially for use in <a href="http://www.keystonejs.com">KeystoneJS</a></li>
+							<li>The CSS is functionally complete, with some tweaks and browser testing yet to be done</li>
+							<li>The React components are currently prototypes, their structure and functionality is WIP</li>
 						</ul>
 						<h5 className="demo-banner-divider">
 							<span className="demo-banner-divider-inner">Demos</span>
 						</h5>
-						<Row className="demo-banner-nav">
+						<div className="demo-banner-nav row">
 							{menuItems}
-						</Row>
-					</Container>
+						</div>
+					</div>
 				</div>
 				<div className="demo-banner demo-banner--tertiary">
-					<Container maxWidth={768} className="demo-container">
+					<div className="demo-container container">
 						<h2 className="demo-banner__heading demo-banner__heading-2">Why build <em>another</em> UI kit?</h2>
-						<p>We believe there is a need for a high quality, modular set of UI scaffolding components and controls for React that are built from the outset to natively implement React patterns.</p>
-						<p><strong>Elemental UI</strong> has been born to solve real-world requirements in projects we work on, and for use in the node.js content management platform <a href="http://www.keystonejs.com" target="_blank">KeystoneJS</a>.</p>
-						<p>Our goal is to create a set of functional and unopinionated components that are useful on their own or together, with an unobtrusive default style and flexible theme capabilities.</p>
-						<p>Thanks and credit go to the many other great CSS Component libraries that have been developed and whose shoulders we stand on, especially Bootstrap.</p>
+						<p>At <a href="http://www.thinkmill.com.au" target="_blank">Thinkmill</a> we are constantly building bespoke web applications for various clients. We noticed that whilst projects vary greatly, we're using the same CSS and Component foundations over and over again.</p>
+						<p>In an effort to keep our projects' codebases <abbr title="Don't Repeat Yourself">DRY</abbr> we decided it was time to build something to improve our workflow and unify our projects to decrease development time.</p>
+						<p>All this coupled with a growing need for a re-usable set of React.js UI Components for the Admin UI in <a href="http://www.keystonejs.com" target="_blank">KeystoneJS</a>, Elemental was born.</p>
+						<p>While there are many other great UI Libraries available (including for React), our goal with Elemental is to develop a light-weight, unopinionated, modular framework that we can use across all our web projects.</p>
+
 						<div className="demo-banner-points">
-							<Row>
-								<Col sm="1/3">
+							<div className="row">
+								<div className="col-sm-4">
 									<h3>Open Source</h3>
 									<p>Available for use under the MIT license,  built on foundations of React.js, LESS, Babel and Gulp, and inspired by other great projects.</p>
-								</Col>
-								<Col sm="1/3">
+								</div>
+								<div className="col-sm-4">
 									<h3>Modern Workflows</h3>
 									<p>Elemental is designed to be installed from npm and built into your project with browserify or webpack. You can customise it by including our LESS too.</p>
-								</Col>
-								<Col sm="1/3">
+								</div>
+								<div className="col-sm-4">
 									<h3>Made by Thinkmill</h3>
 									<p>Elemental UI is the cornerstone of Thinkmill's development suite, made by people who share a passion for HTML, CSS and JavaScript.</p>
-								</Col>
-							</Row>
+								</div>
+							</div>
 						</div>
-					</Container>
+					</div>
 				</div>
 			</div>
 		);

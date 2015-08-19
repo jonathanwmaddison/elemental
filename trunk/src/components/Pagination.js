@@ -1,73 +1,60 @@
 var React = require('react/addons');
+var blacklist = require('blacklist');
 var classNames = require('classnames');
 
 module.exports = React.createClass({
 	displayName: 'Pagination',
 	propTypes: {
 		className: React.PropTypes.string,
-		currentPage: React.PropTypes.number.isRequired,
-		onPageSelect: React.PropTypes.func,
-		pageSize: React.PropTypes.number.isRequired,
-		plural: React.PropTypes.string,
-		singular: React.PropTypes.string,
-		style: React.PropTypes.object,
-		total: React.PropTypes.number.isRequired
+		onClick: React.PropTypes.func,
+		pagination: React.PropTypes.shape({
+			currentPage: React.PropTypes.number,
+			first:       React.PropTypes.number,
+			last:        React.PropTypes.number,
+			next:        React.PropTypes.bool,
+			pages:       React.PropTypes.array,
+			previous:    React.PropTypes.bool,
+			total:       React.PropTypes.number,
+			totalPages:  React.PropTypes.number
+		})
 	},
-	renderCount () {
-		let count = '';
-		let { currentPage, pageSize, plural, singular, total } = this.props;
-		if (!total) {
-			count = 'No ' + (plural || 'records');
-		} else if (total > pageSize) {
-			let start = (pageSize * (currentPage - 1)) + 1;
-			let end = Math.min(start + pageSize - 1, total);
-			count = `Showing ${start} to ${end} of ${total}`;
-		} else {
-			count = 'Showing ' + total;
-			if (total > 1 && plural) {
-				count += ' ' + plural;
-			} else if (total === 1 && singular) {
-				count += ' ' + singular;
-			}
-		}
+	renderCount() {
+		var count = this.props.pagination;
 		return (
-			<div className="Pagination__count">{count}</div>
+			<div className="Pagination__count">Showing {count.first} to {count.last} of {count.total}</div>
 		);
 	},
-	onPageSelect (i) {
-		if (!this.props.onPageSelect) return;
-		this.props.onPageSelect(i);
-	},
-	renderPages () {
-		if (this.props.total <= this.props.pageSize) return null;
+	renderList() {
+		if (!this.props.pagination.pages) return 'No pages...';
 
-		let pages = [];
-		let { currentPage, pageSize, total } = this.props;
+		var self = this;
 
-		for (let i = 0; i < Math.ceil(total / pageSize); i++) {
-			let page = i + 1;
-			let current = (page === currentPage);
-			let className = classNames('Pagination__list__item', {
-				'is-selected': current
+		var pages = this.props.pagination.pages.map(function(page) {
+			var className = classNames('Pagination__list__item', {
+				'is-selected': self.props.pagination.currentPage === page
 			});
-			/* eslint-disable no-loop-func */
-			pages.push(<button key={'page_' + page} className={className} onClick={() => this.onPageSelect(page)}>{page}</button>);
-			/* eslint-enable */
-		}
+			return <button key={'page_' + page} className={className} onClick={self.props.onClick}>{page}</button>;
+		});
 
 		return (
 			<div className="Pagination__list">
 				{pages}
 			</div>
 		);
-
 	},
-	render () {
-		var className = classNames('Pagination', this.props.className);
+	render() {
+		// props
+		var props = blacklist(this.props, 'className');
+
+
+		// classes
+		var componentClass = classNames('Pagination', this.props.className);
+		props.className = componentClass;
+
 		return (
-			<div className={className} style={this.props.style}>
+			<div {...props}>
 				{this.renderCount()}
-				{this.renderPages()}
+				{this.renderList()}
 			</div>
 		);
 	}

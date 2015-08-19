@@ -2,7 +2,6 @@ const React = require('react/addons');
 
 const {
 	Button,
-	Container,
 	FormField,
 	FormInput,
 	Modal,
@@ -25,8 +24,7 @@ module.exports = React.createClass({
 			password: ''
 		};
 	},
-	toggleModal(e) {
-		e.preventDefault();
+	toggleModal() {
 		var self = this;
 		this.setState({
 			modalIsOpen: !this.state.modalIsOpen
@@ -70,7 +68,7 @@ module.exports = React.createClass({
 			<Button type="primary" disabled={!this.state.email || !this.state.password} submit>Submit</Button>
 		);
 		return (
-			<Container maxWidth={800} className="demo-container">
+			<div className="demo-container container">
 				<h1>Modal</h1>
 
 				<h2>Static Example</h2>
@@ -249,7 +247,7 @@ module.exports = React.createClass({
 						</ModalFooter>
 					</form>
 				</Modal>
-			</Container>
+			</div>
 		);
 	}
 });
