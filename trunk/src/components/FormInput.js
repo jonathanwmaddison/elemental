@@ -29,15 +29,15 @@ module.exports = React.createClass({
 	},
 
 	componentDidMount () {
-		// if (this.props.focusOnMount) {
-		// 	setTimeout(() => {
-		// 		this.focus();
-		// 	}, 10);
-		// }
+		if (this.props.focusOnMount) {
+			setTimeout(() => {
+				this.focus();
+			}, 10);
+		}
 	},
 
 	focus() {
-		// React.findDOMNode(this.refs.target).focus();
+		React.findDOMNode(this.refs.target).focus();
 	},
 
 	render() {
@@ -54,7 +54,8 @@ module.exports = React.createClass({
 
 		var props = Object.assign(blacklist(this.props, 'className'), {
 			className: className,
-			id: this.props.id || this.props.name
+			id: this.props.id || this.props.name,
+			ref: 'target'
 		});
 
 		// element

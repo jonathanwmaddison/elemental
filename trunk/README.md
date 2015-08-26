@@ -1,7 +1,3 @@
-<p align="center">
-	<img src="http://elemental-ui.com/images/elemental-logo-paths.svg" width="174" height="154" alt="Elemental Logo" />
-</p>
-
 # Elemental UI
 
 React & CSS UI Framework.
