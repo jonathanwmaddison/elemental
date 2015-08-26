@@ -41,8 +41,6 @@ module.exports = React.createClass({
 		let { basis, gutter, xs, sm, md, lg } = this.props;
 		let { windowWidth } = this.state;
 
-		console.log(this.props.basis);
-
 		let columnStyle = {
 			minHeight: 1,
 			paddingLeft: (gutter / 2),
@@ -59,7 +57,7 @@ module.exports = React.createClass({
 			columnStyle['flex'] = 1;
 			columnStyle['flexBasis'] = basis;
 		} else if (windowWidth < E.breakpoint.xs) {
-			columnStyle['width'] = xs;
+			columnStyle['width'] = xs || '100%';
 		} else if (windowWidth < E.breakpoint.sm) {
 			columnStyle['width'] = sm || xs;
 		} else if (windowWidth < E.breakpoint.md) {
