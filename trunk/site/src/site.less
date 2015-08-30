@@ -1,4 +1,4 @@
-// 
+//
 // Elemental
 // ==============================
 
@@ -30,14 +30,15 @@
 // Type
 // ------------------------------
 
-.demo-container {
-	p {
-		margin-bottom: 1em;
-		margin-top: 0;
-	}
-	> h2 { margin-top: 3em; }
-	> h3 { margin-top: 3em; }
+p {
+	margin-bottom: 1em;
+	margin-top: 0;
 }
+h2 { margin-top: 3em; }
+h2 + .lead {
+	margin-top: 0;
+}
+h3 { margin-top: 3em; }
 
 
 
@@ -49,22 +50,6 @@
 .FormLabel {
 	font-size: @font-size-sm;
 	font-weight: @font-weight-bold;
-}
-
-
-
-
-// Container
-// ------------------------------
-
-.demo-container {
-	max-width: @demo-container-width;
-
-	// healthy padding on mobile
-	@media (max-width: @screen-sm-max) {
-		padding-left: 20px;
-		padding-right: 20px;
-	}
 }
 
 
@@ -213,7 +198,7 @@
 		position: fixed;
 		top: 0; // account for dropshadow
 		z-index: 3;
-		
+
 		.primary-nav__item {
 			.translate3d(50px, 0, 0);
 			color: @gray;
@@ -524,7 +509,7 @@ a.Button--demo-link {
 	@media (min-width: 481px) {
 		.square(240px);
 		background-size: 240px, 240px;
-		left: -90px;
+		left: -82px;
 		top: -75px;
 	}
 }
@@ -552,23 +537,7 @@ a.Button--demo-link {
 
 // points
 .demo-banner-points {
-	margin-top: 60px;
-}
-
-
-
-
-// Demo Box
-// ------------------------------
-
-.demo-box {
-	background-color: darken(@body-bg, 3%);
-	border-radius: @border-radius-base;
-	margin-bottom: 1em;
-	padding: .66em 1.5em;
-}
-.demo-box--inverted {
-	background-color: @app-primary;
+	margin-top: 20px;
 }
 
 
@@ -628,7 +597,7 @@ a.Button--demo-link {
 	border: 1px solid @code-border-color;
 	border-top: none;
 	margin: 0;
-	overflow-x: scroll;
+	overflow-x: auto;
 	-webkit-overflow-scrolling: touch;
 
 	&:last-child {
@@ -690,9 +659,9 @@ a.Button--demo-link {
 
 .usage-table {
 	min-height: 1px;
-	overflow-x: scroll;
+	overflow-x: auto;
 	-webkit-overflow-scrolling: touch;
-	
+
 	td, th {
 		line-height: 1.4;
 		vertical-align: top;
@@ -719,12 +688,3 @@ a.Button--demo-link {
 .usage-table__description {
 	min-width: 200px;
 }
-
-
-
-
-
-
-
-
-

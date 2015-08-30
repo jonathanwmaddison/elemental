@@ -16,27 +16,30 @@ module.exports = React.createClass({
 		onChange: React.PropTypes.func,
 		size: React.PropTypes.oneOf(['lg', 'sm', 'xs']),
 		type: React.PropTypes.string,
-		value: React.PropTypes.string
+		value: React.PropTypes.oneOfType([
+			React.PropTypes.number,
+			React.PropTypes.string
+		])
 	},
-	
+
 	getDefaultProps() {
 		return {
 			type: 'text'
 		};
 	},
-	
+
 	componentDidMount () {
-		if (this.props.focusOnMount) {
-			setTimeout(() => {
-				this.focus();
-			}, 10);
-		}
+		// if (this.props.focusOnMount) {
+		// 	setTimeout(() => {
+		// 		this.focus();
+		// 	}, 10);
+		// }
 	},
-	
+
 	focus() {
-		React.findDOMNode(this.refs.target).focus();
+		// React.findDOMNode(this.refs.target).focus();
 	},
-	
+
 	render() {
 		// classes
 		var className = classNames(
@@ -51,8 +54,7 @@ module.exports = React.createClass({
 
 		var props = Object.assign(blacklist(this.props, 'className'), {
 			className: className,
-			id: this.props.id || this.props.name,
-			ref: 'target'
+			id: this.props.id || this.props.name
 		});
 
 		// element

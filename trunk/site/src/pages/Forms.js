@@ -5,6 +5,7 @@ const React = require('react');
 const {
 	Button,
 	Checkbox,
+	Container,
 	EmailInputGroup,
 	FileDragAndDrop,
 	FileUpload,
@@ -12,7 +13,6 @@ const {
 	FormField,
 	FormIconField,
 	FormInput,
-	FormLabel,
 	FormNote,
 	FormRow,
 	FormSelect,
@@ -117,7 +117,7 @@ var Forms = React.createClass({
 		});
 
 		return (
-			<div className="demo-container container">
+			<Container maxWidth={800} className="demo-container">
 				<h1>Forms</h1>
 
 
@@ -802,7 +802,7 @@ var Forms = React.createClass({
 						<FileDragAndDrop files={this.state.files} onDrop={this.onDrop} />
 					</FormField>
 				</Form>
-			</div>
+			</Container>
 		);
 	}
 });
