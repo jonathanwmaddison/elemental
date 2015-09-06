@@ -24,6 +24,7 @@ module.exports = React.createClass({
 		label: React.PropTypes.string.isRequired,
 		onClear: React.PropTypes.func,
 		onClick: React.PropTypes.func,
+		showClearButton: React.PropTypes.bool,
 		type: React.PropTypes.oneOf(ALERT_TYPES)
 	},
 	getDefaultProps() {
@@ -32,8 +33,8 @@ module.exports = React.createClass({
 		};
 	},
 	renderClearButton() {
-		if (!this.props.onClear) return null;
-		return <button type="button" onClick={this.props.onClear} className="Pill__clear">&times;</button>;
+		if (!this.props.showClearButton) return null;
+		return <button onClick={this.props.onClear} className="Pill__clear">&times;</button>;
 	},
 	render() {
 		var componentClass = classNames(
@@ -42,12 +43,12 @@ module.exports = React.createClass({
 			this.props.className
 		);
 
-		var props = blacklist(this.props, 'className', 'label', 'onClear', 'onClick', 'type');
+		var props = blacklist(this.props, 'className', 'showClearButton', 'label', 'onClear', 'onClick', 'type');
 		props.className = componentClass;
 
 		return (
 			<div {...props}>
-				<button type="button" onClick={this.props.onClick} className="Pill__label">{this.props.label}</button>
+				<button onClick={this.props.onClick} className="Pill__label">{this.props.label}</button>
 				{this.renderClearButton()}
 			</div>
 		);

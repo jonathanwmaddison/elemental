@@ -11,9 +11,12 @@
 	display: inline-block;
 	font-size: .85em;
 	font-weight: 500;
-	margin-right: .5em;
 	overflow: hidden;
 	line-height: 2.2em;
+
+	& + & {
+		margin-left: .5em;
+	}
 }
 
 
@@ -108,3 +111,12 @@
 .Pill--danger-inverted > .Pill__clear {
 	.pill-inverted-variant(white, @pill-danger-color);
 }
+
+
+
+
+
+
+
+
+
