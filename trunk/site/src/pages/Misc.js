@@ -16,7 +16,6 @@ var Misc = React.createClass({
 			plural: 'Potatoes',
 			singular: 'Potato',
 			total: 123,
-			limit: 5
 		};
 	},
 
@@ -25,7 +24,7 @@ var Misc = React.createClass({
 		var fieldName = e.target.name;
 		var newValue = e.target.value;
 
-		if (fieldName === 'currentPage' || fieldName === 'pageSize' || fieldName === 'total' || fieldName === 'limit') {
+		if (fieldName === 'currentPage' || fieldName === 'pageSize' || fieldName === 'total') {
 			newValue = parseInt(newValue);
 
 			if (isNaN(newValue) || newValue < 0) {
@@ -175,7 +174,6 @@ var Misc = React.createClass({
 							singular={this.state.singular}
 							style={{ lineHeight: '34px', marginBottom: 0, minHeight: 34 }}
 							total={this.state.total}
-							limit={this.state.limit}
 							/>
 					</div>
 					<ExampleSource>
@@ -187,7 +185,6 @@ var Misc = React.createClass({
 								plural={this.state.plural}
 								singular={this.state.singular}
 								total={this.state.total}
-								limit={this.state.limit}
 								/>
 						`}
 					</ExampleSource>
@@ -216,11 +213,6 @@ var Misc = React.createClass({
 					<InputGroup.Section grow>
 						<FormField label="Total records">
 							<FormInput name="total" type="number" value={this.state.total} onChange={this.handlePaginationValueChange} placeholder="Total records" />
-						</FormField>
-					</InputGroup.Section>
-					<InputGroup.Section grow>
-						<FormField label="Limit">
-							<FormInput name="limit" type="number" value={this.state.limit} onChange={this.handlePaginationValueChange} placeholder="Limit" />
 						</FormField>
 					</InputGroup.Section>
 				</InputGroup>
@@ -272,12 +264,6 @@ var Misc = React.createClass({
 								<td className="usage-table__default">none&nbsp;(required)</td>
 								<td className="usage-table__description">The total number of records.</td>
 							</tr>
-							<tr>
-								<td className="usage-table__prop">limit</td>
-								<td className="usage-table__type">number</td>
-								<td className="usage-table__default">none</td>
-								<td className="usage-table__description">The number of pages to show in pagination.</td>
-							</tr>
 						</tbody>
 					</Table>
 				</div>
@@ -286,17 +272,17 @@ var Misc = React.createClass({
 				<div className="code-example">
 					<div className="code-example__example">
 						<Pill label="Create" type="success-inverted" />
-						<Pill label="First Pill" type="primary" onClear={() => {}} />
-						<Pill label="Second Pill" type="primary" onClear={() => {}} />
-						<Pill label="Third Pill" type="primary" onClear={() => {}} />
+						<Pill label="First Pill" type="primary" showClearButton />
+						<Pill label="Second Pill" type="primary" showClearButton />
+						<Pill label="Third Pill" type="primary" showClearButton />
 						<Pill label="Clear All" />
 					</div>
 					<ExampleSource>
 						{`
 							<Pill label="Create" type="success-inverted" />
-							<Pill label="First Pill" type="primary" onClear={this.handleClear} />
-							<Pill label="Second Pill" type="primary" onClear={this.handleClear} />
-							<Pill label="Third Pill" type="primary" onClear={this.handleClear} />
+							<Pill label="First Pill" type="primary" showClearButton />
+							<Pill label="Second Pill" type="primary" showClearButton />
+							<Pill label="Third Pill" type="primary" showClearButton />
 							<Pill label="Clear All" />
 						`}
 					</ExampleSource>
@@ -314,6 +300,12 @@ var Misc = React.createClass({
 						</thead>
 						<tbody>
 							<tr>
+								<td className="usage-table__prop">showClearButton</td>
+								<td className="usage-table__type">bool</td>
+								<td className="usage-table__default">false</td>
+								<td className="usage-table__description">Display the clear button, rendered beside the label</td>
+							</tr>
+							<tr>
 								<td className="usage-table__prop">label</td>
 								<td className="usage-table__type">string</td>
 								<td className="usage-table__default">false</td>
@@ -323,7 +315,7 @@ var Misc = React.createClass({
 								<td className="usage-table__prop">onClear</td>
 								<td className="usage-table__type">func</td>
 								<td className="usage-table__default">undefined</td>
-								<td className="usage-table__description">Handle clear events on the pill. The clear button is rendered when this is supplied</td>
+								<td className="usage-table__description">Run when the user clicks the clear button</td>
 							</tr>
 							<tr>
 								<td className="usage-table__prop">type</td>
