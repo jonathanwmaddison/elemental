@@ -65,20 +65,17 @@
 
 	// remove the border radius initially
 	> .FormInput,
-	> .Button,
-	> .FormField .FormInput {
+	> .Button {
 		border-radius: 0;
 	}
 
 	// reapply where appropriate
 	&:first-child > .FormInput,
-	&:first-child > .Button,
-	&:first-child > .FormField .FormInput {
+	&:first-child > .Button {
 		.border-left-radius(@border-radius-base);
 	}
 	&:last-child > .FormInput,
-	&:last-child > .Button,
-	&:last-child > .FormField .FormInput {
+	&:last-child > .Button {
 		.border-right-radius(@border-radius-base);
 	}
 }

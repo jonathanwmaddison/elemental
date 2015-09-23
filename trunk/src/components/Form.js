@@ -1,6 +1,6 @@
 var blacklist = require('blacklist');
 var classnames = require('classnames');
-var React = require('react');
+var React = require('react/addons');
 
 module.exports = React.createClass({
 	displayName: 'Form',

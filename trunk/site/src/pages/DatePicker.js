@@ -1,4 +1,4 @@
-var React = require('react');
+var React = require('react/addons');
 var Button = require('elemental').Button;
 var DateSelect = require('react-date-select');
 
