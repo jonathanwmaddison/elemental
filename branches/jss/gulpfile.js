@@ -9,11 +9,8 @@ var taskConfig = {
 		dependencies: [
 			'blacklist',
 			'classnames',
-			'history',
 			'react',
-			'react-addons-css-transition-group',
-			'react-dom',
-			'react-router'
+			'react/addons'
 		],
 		less: {
 			path: 'less',

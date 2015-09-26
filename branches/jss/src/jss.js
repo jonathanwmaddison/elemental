@@ -6,5 +6,5 @@ jss.use(require('jss-nested'));
 jss.use(require('jss-camel-case'));
 jss.use(require('jss-px'));
 jss.use(require('jss-vendor-prefixer'));
-jss.useSheet = useSheet;
-module.exports = jss;
+exports.jss = jss;
+exports.useSheet = useSheet;

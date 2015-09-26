@@ -1,7 +1,7 @@
-var React = require('react');
+var React = require('react/addons');
 var classNames = require('classnames');
 var blacklist = require('blacklist');
-var jss = require('../jss');
+var useSheet = require('../jss').useSheet;
 var style = require('../styles/button');
 
 const BUTTON_SIZES = ['lg', 'sm', 'xs'];
@@ -32,9 +32,7 @@ var Button = React.createClass({
 		block: React.PropTypes.bool,
 		className: React.PropTypes.string,
 		href: React.PropTypes.string,
-		component: React.PropTypes.node,
 		isActive: React.PropTypes.bool,
-		sheet: React.PropTypes.instanceOf(jss.constructor),
 		size: React.PropTypes.oneOf(BUTTON_SIZES),
 		submit: React.PropTypes.bool,
 		type: React.PropTypes.oneOf(BUTTON_TYPES)
@@ -56,23 +54,23 @@ var Button = React.createClass({
 		);
 
 		// props
-		var props = blacklist(this.props, 'type', 'size', 'component', 'className');
+		var props = blacklist(this.props, 'type', 'size', 'className');
 		props.className = componentClass;
-
-		if (this.props.component) {
-			return React.cloneElement(this.props.component, props);
-		}
 
 		var tag = 'button';
 		props.type = this.props.submit ? 'submit' : 'button';
 
 		if (props.href) {
 			tag = 'a';
-			delete props.type;
+			props.type = null;
 		}
 
-		return React.createElement(tag, props, this.props.children);
+		return React.createElement(
+			tag,
+			props,
+			this.props.children
+		);
 	}
 });
 
-module.exports = jss.useSheet(Button, style);
+module.exports = useSheet(Button, style);

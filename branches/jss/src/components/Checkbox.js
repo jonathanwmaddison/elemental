@@ -1,6 +1,6 @@
 var blacklist = require('blacklist');
 var classNames = require('classnames');
-var React = require('react');
+var React = require('react/addons');
 
 var Checkbox = React.createClass({
 	propTypes: {
@@ -16,7 +16,7 @@ var Checkbox = React.createClass({
 
 	componentDidMount () {
 		if (this.props.focusOnMount) {
-			this.refs.target.focus();
+			this.refs.target.getDOMNode().focus();
 		}
 		this.setIndeterminate(this.props.indeterminate);
 	},
@@ -26,7 +26,7 @@ var Checkbox = React.createClass({
 	},
 
 	setIndeterminate (value) {
-		this.refs.target.indeterminate = value;
+		this.refs.target.getDOMNode().indeterminate = value;
 	},
 
 	render() {

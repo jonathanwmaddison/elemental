@@ -35,7 +35,7 @@ exports.color = {
 	appWarning:       '#fa9f47',
 	brandPrimary:     '#31adb8',
 	bodyBg:           '#fdfdfd',
-	textColor:        colors.greyDark
+	textColor:        color.greyDark
 };
 
 // spacing
