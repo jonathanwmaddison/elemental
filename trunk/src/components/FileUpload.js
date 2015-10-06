@@ -1,4 +1,4 @@
-var React = require('react');
+var React = require('react/addons');
 var blacklist = require('blacklist');
 
 var Button = require('./Button');
@@ -26,12 +26,12 @@ module.exports = React.createClass({
 		};
 	},
         componentDidMount () {
-               this.refs.fileInput.addEventListener('click', function () {
+               this.refs.fileInput.getDOMNode().addEventListener('click', function () {
                        this.value = '';
                },   false);
         },
 	triggerFileBrowser() {
-		this.refs.fileInput.click();
+		this.refs.fileInput.getDOMNode().click();
 	},
 	handleChange(e) {
 		var self = this;

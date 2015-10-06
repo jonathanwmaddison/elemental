@@ -1,4 +1,4 @@
-var React = require('react');
+var React = require('react/addons');
 import E from '../constants';
 
 module.exports = React.createClass({
