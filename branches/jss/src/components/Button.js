@@ -1,4 +1,4 @@
-var React = require('react/addons');
+var React = require('react');
 var classNames = require('classnames');
 var blacklist = require('blacklist');
 var jss = require('../jss');
@@ -32,6 +32,7 @@ var Button = React.createClass({
 		block: React.PropTypes.bool,
 		className: React.PropTypes.string,
 		href: React.PropTypes.string,
+		component: React.PropTypes.node,
 		isActive: React.PropTypes.bool,
 		sheet: React.PropTypes.instanceOf(jss.constructor),
 		size: React.PropTypes.oneOf(BUTTON_SIZES),
@@ -55,22 +56,22 @@ var Button = React.createClass({
 		);
 
 		// props
-		var props = blacklist(this.props, 'type', 'size', 'className');
+		var props = blacklist(this.props, 'type', 'size', 'component', 'className');
 		props.className = componentClass;
+
+		if (this.props.component) {
+			return React.cloneElement(this.props.component, props);
+		}
 
 		var tag = 'button';
 		props.type = this.props.submit ? 'submit' : 'button';
 
 		if (props.href) {
 			tag = 'a';
-			props.type = null;
+			delete props.type;
 		}
 
-		return React.createElement(
-			tag,
-			props,
-			this.props.children
-		);
+		return React.createElement(tag, props, this.props.children);
 	}
 });
 
