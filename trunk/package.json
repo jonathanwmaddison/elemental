@@ -1,6 +1,6 @@
 {
   "name": "elemental",
-  "version": "0.5.11",
+  "version": "0.5.10",
   "description": "React UI Framework",
   "main": "lib/Elemental.js",
   "author": "Jed Watson",
@@ -10,20 +10,21 @@
     "url": "https://github.com/elementalui/elemental.git"
   },
   "dependencies": {
+    "ally.js": "^1.1.0-beta.2",
     "blacklist": "^1.1.2",
     "classnames": "^2.2.0"
   },
   "devDependencies": {
     "babel-eslint": "^4.1.3",
     "eslint": "^1.10.3",
-    "eslint-plugin-react": "^3.13.1",
+    "eslint-plugin-react": "^3.12.0",
     "gulp": "^3.9.0",
     "history": "^1.17.0",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-addons-css-transition-group": "^0.14.0",
     "react-component-gulp-tasks": "^0.7.7",
-    "react-router": "1.0.3"
+    "react-router": "1.0.2"
   },
   "peerDependencies": {
     "react": "^0.14.0",
