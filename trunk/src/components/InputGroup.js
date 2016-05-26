@@ -1,6 +1,5 @@
 var React = require('react');
 var classNames = require('classnames');
-var blacklist = require('blacklist');
 
 module.exports = React.createClass({
 	displayName: 'InputGroup',
@@ -13,10 +12,9 @@ module.exports = React.createClass({
 		var className = classNames('InputGroup', {
 			'InputGroup--contiguous': this.props.contiguous
 		}, this.props.className);
-		var props = blacklist(this.props, 'contiguous');
 
 		return (
-			<div {...props} className={className} />
+			<div {...this.props} className={className} />
 		);
 	}
 });

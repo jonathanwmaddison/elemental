@@ -1,52 +1,48 @@
-import React, { PropTypes } from 'react';
 import classnames from 'classnames';
+import React from 'react';
 
-function SegmentedControl ({
-	className,
-	equalWidthSegments,
-	onChange,
-	options,
-	type,
-	value,
-	...props,
-}) {
-	props.className = classnames('SegmentedControl', ('SegmentedControl--' + type), {
-		'SegmentedControl--equal-widths': equalWidthSegments,
-	}, className);
+module.exports = React.createClass({
+	displayName: 'SegmentedControl',
 
-	return (
-		<div {...props}>
-			{options.map((op) => {
+	propTypes: {
+		className: React.PropTypes.string,
+		equalWidthSegments: React.PropTypes.bool,
+		onChange: React.PropTypes.func.isRequired,
+		options: React.PropTypes.array.isRequired,
+		type: React.PropTypes.oneOf(['default', 'muted', 'danger', 'info', 'primary', 'success', 'warning']),
+		value: React.PropTypes.string
+	},
 
-				let buttonClassName = classnames('SegmentedControl__button', {
-					'is-selected': op.value === value,
-				});
+	getDefaultProps () {
+		return {
+			type: 'default'
+		};
+	},
 
-				return (
-					<span key={'option-' + op.value} className="SegmentedControl__item">
-						<button type="button" onClick={() => onChange(op.value)} className={buttonClassName}>
-							{op.label}
-						</button>
-					</span>
-				);
-			})}
-		</div>);
-};
+	onChange (value) {
+		this.props.onChange(value);
+	},
 
-SegmentedControl.propTypes = {
-	className: PropTypes.string,
-	equalWidthSegments: PropTypes.bool,
-	onChange: PropTypes.func.isRequired,
-	options: PropTypes.array.isRequired,
-	type: PropTypes.oneOf(['default', 'muted', 'danger', 'info', 'primary', 'success', 'warning']),
-	value: PropTypes.oneOfType([
-		PropTypes.bool,
-		PropTypes.number,
-		PropTypes.string,
-	]),
-};
-SegmentedControl.defaultProps = {
-	type: 'default',
-};
+	render () {
+		let componentClassName = classnames('SegmentedControl', ('SegmentedControl--' + this.props.type), {
+			'SegmentedControl--equal-widths': this.props.equalWidthSegments
+		}, this.props.className);
 
-module.exports = SegmentedControl;
+		let options = this.props.options.map((op) => {
+
+			let buttonClassName = classnames('SegmentedControl__button', {
+				'is-selected': op.value === this.props.value
+			});
+
+			return (
+				<span key={'option-' + op.value} className="SegmentedControl__item">
+					<button type="button" onClick={this.onChange.bind(this, op.value)} className={buttonClassName}>
+						{op.label}
+					</button>
+				</span>
+			);
+		});
+
+		return <div className={componentClassName}>{options}</div>;
+	}
+});
