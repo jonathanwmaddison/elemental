@@ -30,7 +30,7 @@ const controlOptions = [
 	{ label: 'Caramel',    value: 'caramel' },
 	{ label: 'Chocolate',  value: 'chocolate' },
 	{ label: 'Strawberry', value: 'strawberry' },
-	{ label: 'Vanilla',    value: 'vanilla' }
+	{ label: 'Vanilla',    value: 'vanilla', disabled: true }
 ];
 const COUNTRIES = require('../data/countries');
 const COLOR_VARIANTS = [
@@ -128,7 +128,7 @@ var Forms = React.createClass({
 					<div className="code-example__example">
 						<Form action="javascript:;">
 							<FormField label="Email address" htmlFor="basic-form-input-email">
-								<FormInput autofocus type="email" placeholder="Enter email" name="basic-form-input-email" />
+								<FormInput autoFocus type="email" placeholder="Enter email" name="basic-form-input-email" />
 							</FormField>
 							<FormField label="Password" htmlFor="basic-form-input-password">
 								<FormInput type="password" placeholder="Password" name="basic-form-input-password" />
@@ -143,7 +143,7 @@ var Forms = React.createClass({
 						{`
 							<Form>
 								<FormField label="Email address" htmlFor="basic-form-input-email">
-									<FormInput autofocus type="email" placeholder="Enter email" name="basic-form-input-email" />
+									<FormInput autoFocus type="email" placeholder="Enter email" name="basic-form-input-email" />
 								</FormField>
 								<FormField label="Password" htmlFor="basic-form-input-password">
 									<FormInput type="password" placeholder="Password" name="basic-form-input-password" />
@@ -462,7 +462,14 @@ var Forms = React.createClass({
 						<FormSelect options={controlOptions} firstOption="Select" onChange={updateSelect} />
 					</div>
 					<ExampleSource>
-						{`<FormSelect options={[...]} firstOption="Select" onChange={this.handleSelect} />`}
+						{`
+							<FormSelect options={[
+								{ label: 'Caramel',    value: 'caramel' },
+								{ label: 'Chocolate',  value: 'chocolate' },
+								{ label: 'Strawberry', value: 'strawberry' },
+								{ label: 'Vanilla',    value: 'vanilla', disabled: true }
+							]} firstOption="Select" onChange={this.handleSelect} />
+						`}
 					</ExampleSource>
 				</div>
 				<div className="code-example">
