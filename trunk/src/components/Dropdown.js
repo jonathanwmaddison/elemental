@@ -88,7 +88,14 @@ module.exports = React.createClass({
 			} else {
 				menuItem = (
 					<li key={'item-' + i} className="Dropdown-menu__item">
-						<span className="Dropdown-menu__action" onClick={self.onClick.bind(self, item.value)}>{item.label}</span>
+						<span 
+							className="Dropdown-menu__action" 
+							onClick={()=> {
+								self.onClick()
+								item.value()
+						}>
+							{item.label}
+						</span>
 					</li>
 				);
 			}
